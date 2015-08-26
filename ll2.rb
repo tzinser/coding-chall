@@ -9,35 +9,26 @@ class LinkedListNode
 	end
 end
 
-class Stack
-	#attr_reader :data
-
-	def initialize
-		@data = nil
-	end
-
-	#push
-	def push(value)
-		@data = LinkedListNode.new(value, @data)
-	end
-
-	#pop
-	def pop
-		current = @data
-	   	@data = @data.next_node
-	   	current
-	end
-end
-
-def reverse_list(list)
-	stack = Stack.new
-	while list
-		#grab the current value and push to the linklist
-		#move to next value
-		stack.push(list.value)
-		list = list.next_node
-	end
-	stack.pop
+def reverse_list(list, previous=nil)
+    #Linked List 2
+    
+    old_next_node = list.next_node
+    list.next_node = previous
+    if old_next_node.nil?
+        list
+    else
+        reverse_list(old_next_node, list)
+    end
+    
+    
+    
+#    if list.nil?
+#        return previous
+#    else
+#        old_next_node = list.next_node
+#        list.next_node = previous
+#        reverse_list(old_next_node, list)
+#    end
 end
 
 def print_values(list_node)

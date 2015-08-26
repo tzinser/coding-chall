@@ -9,13 +9,15 @@ class LinkedListNode
 	end
 end
 
-def print_values(list_node)
-  print "#{list_node.value} --> "
-  if list_node.next_node.nil?
-    print "nil\n"
-    return
-  else
-    print_values(list_node.next_node)
+class ListNodePrinter
+  def output(list_node)  
+    print "#{list_node.value} --> "
+    if list_node.next_node.nil?
+      print "nil\n"
+      return
+    else
+      output(list_node.next_node)
+    end
   end
 end
 
@@ -23,4 +25,8 @@ node1 = LinkedListNode.new(37)
 node2 = LinkedListNode.new(99, node1)
 node3 = LinkedListNode.new(12, node2)
 
-print_values(node3)
+list_node_printer = ListNodePrinter.new
+list_node_printer.output(node3)
+
+
+#class level method self.output
